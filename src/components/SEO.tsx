@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 
 interface SEOProps {
@@ -5,7 +6,7 @@ interface SEOProps {
   description?: string
   image?: string
   shouldExcludeTitleSuffix?: boolean
-  shouldIndexPage?: boolean
+  shoudIndexPage?: boolean
 }
 
 export default function SEO({
@@ -13,29 +14,20 @@ export default function SEO({
   description,
   image,
   shouldExcludeTitleSuffix = false,
-  shouldIndexPage = true
+  shoudIndexPage = true
 }: SEOProps) {
   const pageTitle = `${title} ${
     !shouldExcludeTitleSuffix ? '| DevCommerce' : ''
-  } `
-
+  }`
   const pageImage = image
     ? `${process.env.NEXT_PUBLIC_SITE_URL}/${image}`
     : null
-
   return (
     <Head>
       <title>{pageTitle}</title>
       {description && <meta name="description" content={description} />}
       {pageImage && <meta name="image" content={pageImage} />}
-
-      {/** se essa prop for false então não indica que o arquivo não
-       * será indexado nos motores de busca - pagina de confirmação, entre outras
-       * não faz sentido estar indexado no google.
-       */}
-      {!shouldIndexPage && <meta name="robots" content="noindex,nofollow" />}
-
-      {/* meta tags extra que o @diego3g disponibilizou - Thanks XD improving SEO */}
+      {!shoudIndexPage && <meta name="robots" content="noindex,nofolow" />}
 
       <meta httpEquiv="x-ua-compatible" content="IE=edge,chrome=1" />
       <meta name="MobileOptimized" content="320" />

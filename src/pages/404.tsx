@@ -1,12 +1,8 @@
-import Link from 'next/link'
-
-export default function PageNotFound() {
+export default function NotFound() {
   return (
     <div>
-      <h1>Ops! Página não encontrada</h1>
-      <Link href="/">
-        <a>Vortaaaa</a>
-      </Link>
+      <h1>Page not found</h1>
+      <p>Are you lost?</p>
     </div>
   )
 }

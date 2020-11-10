@@ -1,51 +1,32 @@
-import { GetServerSideProps } from 'next'
+import React from 'react'
+import Head from 'next/head'
 import Link from 'next/link'
 
-import { Title } from '@/styles/pages/Home'
-import SEO from '@/components/SEO'
-import { client } from '@/lib/prismic'
-import Prismic from 'prismic-javascript'
-import PrismicDOM from 'prismic-dom'
-import { Document } from 'prismic-javascript/types/documents'
-import { useRouter } from 'next/router'
+import Logo from '../assets/logo.svg'
+import { Container } from '../styles/Home'
+import SEO from '../components/SEO'
 
-interface HomeProps {
-  recommendedProducts: Document[]
-}
-
-export default function Home({ recommendedProducts }: HomeProps) {
-  const router = useRouter()
-
+const Home: React.FC = () => {
   return (
-    <div>
+    <Container>
       <SEO
-        title="DevCommerce | boosting your dev things"
+        title="RocketShoes, o seu e-commerce de calçados top!"
         image="boost.png"
         shouldExcludeTitleSuffix
       />
-      <section>
-        <Title>Products</Title>
-        <span onClick={() => router.push('search')}>Buscar</span>
-        <ul>
-          {recommendedProducts.map(product => (
-            <li key={product.id}>
-              <Link href={`catalog/products/${product.uid}`}>
-                <a>{PrismicDOM.RichText.asText(product.data.title)}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main>
+        <Logo />
+        <h1>ReactJs Structure</h1>
+        <p>A ReactJS + Next.js structure made by Rocketseat</p>
+        <Link href="https://vercel.com/docs">
+          <a>Click and learn more</a>
+        </Link>
+      </main>
+    </Container>
   )
 }
-
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  const recommendedProducts = await client().query([
-    Prismic.Predicates.at('document.type', 'product')
-  ])
-
-  return {
-    props: { recommendedProducts: recommendedProducts.results }
-  }
-}
+export default Home

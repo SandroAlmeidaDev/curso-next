@@ -1,5 +1,7 @@
+import React from 'react'
 import Document, {
   DocumentContext,
+  DocumentInitialProps,
   Html,
   Head,
   Main,
@@ -8,7 +10,9 @@ import Document, {
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext) {
+  static async getInitialProps(
+    ctx: DocumentContext
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet()
     const originalRenderPage = ctx.renderPage
 
@@ -33,16 +37,17 @@ export default class MyDocument extends Document {
     }
   }
 
-  render() {
+  render(): JSX.Element {
     return (
-      <Html lang="pt-BR">
+      <Html lang="pt">
         <Head>
           <meta charSet="utf-8" />
-          {/* <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> */}
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
+
+          <link rel="icon" href="https://rocketseat.com.br/favicon.ico" />
         </Head>
         <body>
           <Main />
