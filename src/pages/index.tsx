@@ -1,9 +1,11 @@
-import React from 'react'
+import { useRouter } from 'next/router'
+import { useState, FormEvent } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-
-import Logo from '../assets/logo.svg'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import { Container } from '../styles/Home'
+import Logo from '../assets/logo.svg'
+
 import SEO from '../components/SEO'
 
 const Home: React.FC = () => {
@@ -18,14 +20,8 @@ const Home: React.FC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <Logo />
-        <h1>ReactJs Structure</h1>
-        <p>A ReactJS + Next.js structure made by Rocketseat</p>
-        <Link href="https://vercel.com/docs">
-          <a>Click and learn more</a>
-        </Link>
-      </main>
+      <Header> </Header>
+      <Footer />
     </Container>
   )
 }
